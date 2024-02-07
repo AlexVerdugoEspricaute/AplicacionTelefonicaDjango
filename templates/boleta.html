@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  {% load humanize %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlaces a las hojas de estilo y scripts de Bootstrap u otros recursos necesarios -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Puedes incluir otros enlaces a estilos adicionales o scripts aquí -->
+    <title>Boleta</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="card-title text-center">Boleta</h1>
+        <!-- Agrega aquí el contenido específico de la boleta, por ejemplo, detalles de la factura, llamadas, etc. -->
+        <!-- Utiliza las etiquetas de Django para acceder a los datos del modelo Llamada y formatearlos según sea necesario -->
+        {% for llamada in llamadas %}
+            <p>{{ llamada.numero }} - {{ llamada.fecha }} - {{ llamada.hora_inicio }} - {{ llamada.hora_fin }} - {{ llamada.precio|floatformat:2 }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

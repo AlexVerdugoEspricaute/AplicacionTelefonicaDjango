@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  {% load humanize %}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlaces a las hojas de estilo y scripts de Bootstrap u otros recursos necesarios -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Puedes incluir otros enlaces a estilos adicionales o scripts aquí -->
+    <title>Llamadas Realizadas</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="card-title text-center">Llamadas Realizadas</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Llamada realizada</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora de inicio</th>
+            <th scope="col">Hora de termino</th>
+            <th scope="col">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for llamada in llamadas %}
+            <tr>
+              <!-- Añade un contador o identificador único para la columna # -->
+              <td>{{ forloop.counter }}</td>
+              <td>{{ llamada.user | title }}</td>
+              <td>{{ llamada.numero }}</td>
+              <td>{{ llamada.fecha }}</td>
+              <td>{{ llamada.hora_inicio }}</td>
+              <td>{{ llamada.hora_fin }}</td>
+              <td>${{ llamada.precio | intcomma }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+
+{% endblock %}
